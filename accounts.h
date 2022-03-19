@@ -2,6 +2,9 @@
 
 
 #include <iostream>;
+#include <vector>;
+#include <fstream>;
+#include "text.h";
 
 
 struct user
@@ -16,4 +19,8 @@ struct user
 };
 
 
-void registerAccount();
+std::vector<user> getAccounts(); // Receiving accounts data
+
+void registerAccount(std::vector<user>); // Create new account
+
+void saveAccounts(std::vector<user>); // Write accounts data in file
