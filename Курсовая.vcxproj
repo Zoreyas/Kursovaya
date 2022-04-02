@@ -143,11 +143,13 @@
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sha256.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="accounts.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="sha256.h" />
     <ClInclude Include="text.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

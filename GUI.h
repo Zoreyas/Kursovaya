@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "input.h";
+#include "input.h"
+#include "accounts.h"
 
 
-void LogInScreen(); // Shows screen where user can choose log in or register
+void navitaion(std::vector<user>, user); // navigation via menu's

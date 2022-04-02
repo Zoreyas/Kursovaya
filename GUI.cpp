@@ -1,14 +1,11 @@
-#include "GUI.h";
+#include "GUI.h"
 
 
-void LogInScreen()
+void navigation(std::vector<user> accounts, user current_user)
 {
-	std::cout << LINE_LOG_IN_OR_REGISTER;
-	switch (inputMenu('1', '2'))
+	while (true)
 	{
-	case '1':
-		break;
-	case '2':
-		break;
+		std::cout << LINE_LOG_IN_OR_REGISTER;
+
 	}
 }
