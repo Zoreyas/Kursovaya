@@ -1,0 +1,12 @@
+fast
+Newtest
+3
+5
+4
+2
+slow
+tesrwe
+5
+8
+67
+3

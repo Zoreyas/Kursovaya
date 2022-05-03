@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="accounts.cpp" />
+    <ClCompile Include="data.cpp" />
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -147,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="accounts.h" />
+    <ClInclude Include="data.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="sha256.h" />

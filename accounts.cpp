@@ -9,11 +9,11 @@ std::vector<user> getAccounts()
 	account_file.open(FILE_NAME_ACCOUNTS);
 	user buffer;
 	while (account_file
+		>> buffer.admin
+		>> buffer.approved
 		>> buffer.login
 		>> buffer.hash_from_password_with_salt
-		>> buffer.salt
-		>> buffer.admin
-		>> buffer.approved)
+		>> buffer.salt)
 	{
 		accounts.push_back(buffer);
 	}
@@ -45,6 +45,8 @@ user registerAccount(std::vector<user> accounts)
 			new_account->login = login;
 			new_account->salt = salt;
 	
+			std::cout << "Account created" << std::endl;
+			_getch();
 			return *new_account;
 		}
 		else
@@ -58,15 +60,15 @@ user registerAccount(std::vector<user> accounts)
 void saveAccounts(std::vector<user> accounts)
 {
 	std::fstream account_file;
-	account_file.open(FILE_NAME_ACCOUNTS);
+	account_file.open(FILE_NAME_ACCOUNTS, std::ifstream::out);
 
 	for (int i = 0; i < accounts.size(); i++)
 	{
+		account_file << accounts.at(i).admin << std::endl;
+		account_file << accounts.at(i).approved << std::endl;
 		account_file << accounts.at(i).login << std::endl;
 		account_file << accounts.at(i).hash_from_password_with_salt << std::endl;
 		account_file << accounts.at(i).salt << std::endl;
-		account_file << accounts.at(i).admin << std::endl;
-		account_file << accounts.at(i).approved << std::endl;
 	}
 	account_file.close();
 }
@@ -162,11 +164,196 @@ std::string getSymbolsForSalt()
 
 user* getAccount(std::vector<user> accounts, std::string login)
 {
+	user* usr = new user;
+
 	for (int i = 0; i < accounts.size(); i++)
 	{
 		if (accounts.at(i).login == login)
 		{
-			return &accounts.at(i);
+			*usr = accounts.at(i);
+			return usr;
 		}
+	}
+}
+
+void showAccounts(std::vector<user>* accounts)
+{
+	system("cls");
+
+	for (int i = 0; i < accounts->size(); i++)
+	{
+		std::cout << "----------------------------------------\n||" << accounts->at(i).login;
+
+		if (accounts->at(i).admin == true)
+		{
+			std::cout << "||admin";
+		}
+		else
+		{
+			std::cout << "||user";
+		}
+
+		if (accounts->at(i).approved == true)
+		{
+			std::cout << "||approved||\n";
+		}
+		else
+		{
+			std::cout << "||not approved||\n";
+		}
+
+		std::cout << "----------------------------------------\n";
+	}
+}
+
+void editAccount(std::vector<user>* accounts)
+{
+	showAccounts(accounts);
+	std::cout << LINE_ADMIN_ACCOUNTS_EDIT_CHOOSE << std::endl;
+	std::string chos_login;
+	std::cin >> chos_login;
+
+	if (isLoginExist(*accounts, chos_login) == true)
+	{
+		editOneAccount(getAccount(*accounts, chos_login), accounts);
+	}
+	else
+	{
+		std::cout << ERROR_LOGIN_DONT_EXIST << std::endl;
+		_getch();
+	}
+}
+
+void editOneAccount(user* account, std::vector<user>* accounts)
+{
+	system("cls");
+	std::cout << "----------------------------------------\n||" << account->login;
+
+	if (account->admin == true)
+	{
+		std::cout << "||admin";
+	}
+	else
+	{
+		std::cout << "||user";
+	}
+
+	if (account->approved == true)
+	{
+		std::cout << "||approved||\n";
+	}
+	else
+	{
+		std::cout << "||not approved||\n";
+	}
+
+	std::cout << "----------------------------------------\n";
+
+	std::cout << LINE_ADMIN_ACCOUNTS_EDIT << std::endl;
+	switch (_getch())
+	{
+	case '1':
+		changeLogin(account->login, accounts);
+		break;
+	case '2':
+		changeApprove(account->login, accounts);
+		break;
+	case '3':
+		changeAdmin(account->login, accounts);
+		break;
+	}
+}
+
+void changeLogin(std::string login, std::vector<user>* accounts)
+{
+	std::string new_login;
+	
+	system("cls");
+
+	std::cout << LINE_ADMIN_ACCOUNTS_EDIT_LOGIN << std::endl;
+	std::cin >> new_login;
+
+	for (int i = 0; i < accounts->size(); i++)
+	{
+		if (accounts->at(i).login == login)
+		{
+			accounts->at(i).login = new_login;
+		}
+	}
+	
+	std::cout << LINE_ADMIN_ACCOUNTS_EDIT_LOGIN_CHANGED << std::endl;
+	_getch();
+}
+
+void changeApprove(std::string login, std::vector<user>* accounts)
+{
+	system("cls");
+
+	for (int i = 0; i < accounts->size(); i++)
+	{
+		if (accounts->at(i).login == login)
+		{
+			if (accounts->at(i).approved == 0)
+			{
+				accounts->at(i).approved = 1;
+			}
+			else
+			{
+				accounts->at(i).approved = 0;
+			}
+		}
+	}
+
+	std::cout << LINE_ADMIN_ACCOUNTS_EDIT_APPROVE_CHANGED << std::endl;
+	_getch();
+}
+
+void changeAdmin(std::string login, std::vector<user>* accounts)
+{
+	system("cls");
+
+	for (int i = 0; i < accounts->size(); i++)
+	{
+		if (accounts->at(i).login == login)
+		{
+			if (accounts->at(i).admin == 0)
+			{
+				accounts->at(i).admin = 1;
+			}
+			else
+			{
+				accounts->at(i).admin = 0;
+			}
+		}
+	}
+
+	std::cout << LINE_ADMIN_ACCOUNTS_EDIT_ADMIN_CHANGED << std::endl;
+	_getch();
+}
+
+void deleteAccount(std::vector<user>* accounts)
+{
+	system("cls");
+	showAccounts(accounts);
+	std::cout << LINE_ADMIN_ACCOUNTS_EDIT_CHOOSE << std::endl;
+	std::string chos_login;
+	std::cin >> chos_login;
+	if (isLoginExist(*accounts, chos_login) == true)
+	{
+		for (int i = 0; i < accounts->size(); i++)
+		{
+			if (accounts->at(i).login == chos_login)
+			{
+				accounts->erase(accounts->begin() + i);
+			}
+		}
+		
+		std::cout << LINE_ADMIN_ACCOUNTS_DELETED << std::endl;
+		_getch();
+	}
+	else
+	{
+		std::cout << ERROR_LOGIN_DONT_EXIST << std::endl;
+		_getch();
 	}
 }

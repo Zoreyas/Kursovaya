@@ -4,33 +4,49 @@
 int main()
 {
 	std::vector<user> accounts;
+	std::vector<car> cars;
 	int flag_menu = 1;
 	user* current_account = NULL;
-	accounts = getAccounts();
-	
-	while (flag_menu == 1)
-	{
-		system("cls");
-		std::cout << LINE_LOG_IN_OR_REGISTER;
-		switch (inputMenu('1', '3'))
-		{
-		case '1':
-			current_account = logIn(accounts);
-			if (current_account != NULL)
-			{
-				flag_menu = 2;
-			}	
-			break;
-		case '2':
-			accounts.push_back(registerAccount(accounts));
-			break;
-		case '3':
-			flag_menu = 0;
 
-			break;
+	accounts = getAccounts();
+	cars = getCars();
+
+	while (true)
+	{
+
+		if (flag_menu == 0)
+		{
+			saveAccounts(accounts);
+			saveCars(cars);
+			return 0;
+		}
+
+		while (flag_menu == 1)
+		{
+			current_account = screenLogIn(&accounts, &flag_menu);
+		}
+
+		while (flag_menu == 2)
+		{
+			system("cls");
+
+			if (current_account->approved == 0)
+			{
+				std::cout << LINE_NOT_APPROVED_USER << std::endl;
+				_getch();
+				flag_menu = 1;
+			}
+			else
+			{
+				if (current_account->admin == 1)
+				{
+					screenAdmin(&accounts, &cars, &flag_menu);
+				}
+				else
+				{
+
+				}
+			}
 		}
 	}
-
-	saveAccounts(accounts);
-	return 0;
 }
