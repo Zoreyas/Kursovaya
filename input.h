@@ -7,4 +7,7 @@
 
 
 double inputNumber(); // Check is input numeric and return it if so
+
 char inputMenu(char, char); // Check if input in range and return it if so 
+
+void inputBorders(double*, double*); //Input borders with check

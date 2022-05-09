@@ -206,7 +206,7 @@ void showAccounts(std::vector<user>* accounts)
 	}
 }
 
-void editAccount(std::vector<user>* accounts)
+void editAccount(std::vector<user>* accounts, user current_account)
 {
 	showAccounts(accounts);
 	std::cout << LINE_ADMIN_ACCOUNTS_EDIT_CHOOSE << std::endl;
@@ -215,7 +215,15 @@ void editAccount(std::vector<user>* accounts)
 
 	if (isLoginExist(*accounts, chos_login) == true)
 	{
-		editOneAccount(getAccount(*accounts, chos_login), accounts);
+		if (current_account.login == chos_login)
+		{
+			std::cout << ERROR_OWN_LOGIN << std::endl;
+			_getch();
+		}
+		else
+		{
+			editOneAccount(getAccount(*accounts, chos_login), accounts);
+		}
 	}
 	else
 	{

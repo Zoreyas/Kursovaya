@@ -273,3 +273,190 @@ void changeAmount(std::vector<car>* cars, std::string title)
 		}
 	}
 }
+
+void getPrice(std::vector<car>* cars)
+{
+	double total_price = 0;
+	for (int i = 0; i < cars->size(); i++)
+	{
+		std::cout << "------------------------------------------------------------------------------------------------------------------------\n||" << LINE_TITLE << cars->at(i).title << "||" << LINE_PRICE_PER_UNIT << cars->at(i).price << "||" << LINE_TOTAL_PRICE << cars->at(i).price * cars->at(i).amount << "||\n------------------------------------------------------------------------------------------------------------------------" << std::endl;
+		total_price += cars->at(i).price * cars->at(i).amount;
+	}
+	std::cout << "------------------------------------------------------------------------------------------------------------------------\n||" << LINE_TOTAL_PRICE << total_price << "||\n------------------------------------------------------------------------------------------------------------------------" << std::endl;
+}
+
+void getCarViaCapacity(std::vector<car>* cars)
+{
+	double left_border, right_border;
+	inputBorders(&left_border, &right_border);
+
+	for (int i = 0; i < cars->size(); i++)
+	{
+		if ((cars->at(i).capacity >= left_border) && (cars->at(i).capacity <= right_border))
+		{
+			std::cout << "------------------------------------------------------------------------------------------------------------------------\n||" << LINE_TITLE << cars->at(i).title << "||" << LINE_TYPE << cars->at(i).type_of_car << "||" << LINE_CAPACITY << cars->at(i).capacity << "||" << LINE_FUEL_CONSUMPTION << cars->at(i).fuel_consumption << "||" << LINE_PRICE << cars->at(i).price << "||" << LINE_AMOUNT << cars->at(i).amount << "||\n------------------------------------------------------------------------------------------------------------------------\n";
+		}
+	}
+}
+
+void searchTitle(std::vector<car>* cars)
+{
+	std::string chos_title;
+	std::cout << LINE_INPUT_TITLE << std::endl;
+	std::cin >> chos_title;
+
+	for (int i = 0; i < cars->size(); i++)
+	{
+		if (chos_title == cars->at(i).title)
+		{
+			std::cout << "------------------------------------------------------------------------------------------------------------------------\n||" << LINE_TITLE << cars->at(i).title << "||" << LINE_TYPE << cars->at(i).type_of_car << "||" << LINE_CAPACITY << cars->at(i).capacity << "||" << LINE_FUEL_CONSUMPTION << cars->at(i).fuel_consumption << "||" << LINE_PRICE << cars->at(i).price << "||" << LINE_AMOUNT << cars->at(i).amount << "||\n------------------------------------------------------------------------------------------------------------------------\n";
+		}
+	}
+}
+
+void searchAmount(std::vector<car>* cars)
+{
+	int chos_amount;
+	std::cout << LINE_INPUT_AMOUNT << std::endl;
+	chos_amount = inputNumber();
+
+	for (int i = 0; i < cars->size(); i++)
+	{
+		if (chos_amount == cars->at(i).amount)
+		{
+			std::cout << "------------------------------------------------------------------------------------------------------------------------\n||" << LINE_TITLE << cars->at(i).title << "||" << LINE_TYPE << cars->at(i).type_of_car << "||" << LINE_CAPACITY << cars->at(i).capacity << "||" << LINE_FUEL_CONSUMPTION << cars->at(i).fuel_consumption << "||" << LINE_PRICE << cars->at(i).price << "||" << LINE_AMOUNT << cars->at(i).amount << "||\n------------------------------------------------------------------------------------------------------------------------\n";
+		}
+	}
+}
+
+void searchCapacity(std::vector<car>* cars)
+{
+	int chos_capacity;
+	std::cout << LINE_INPUT_CAPACITY << std::endl;
+	chos_capacity = inputNumber();
+
+	for (int i = 0; i < cars->size(); i++)
+	{
+		if (chos_capacity == cars->at(i).capacity)
+		{
+			std::cout << "------------------------------------------------------------------------------------------------------------------------\n||" << LINE_TITLE << cars->at(i).title << "||" << LINE_TYPE << cars->at(i).type_of_car << "||" << LINE_CAPACITY << cars->at(i).capacity << "||" << LINE_FUEL_CONSUMPTION << cars->at(i).fuel_consumption << "||" << LINE_PRICE << cars->at(i).price << "||" << LINE_AMOUNT << cars->at(i).amount << "||\n------------------------------------------------------------------------------------------------------------------------\n";
+		}
+	}
+}
+
+void searchFuelConsumption(std::vector<car>* cars)
+{
+	double chos_fuel_consumption;
+	std::cout << LINE_INPUT_FUEL_CONSUMPTION << std::endl;
+	chos_fuel_consumption = inputNumber();
+
+	for (int i = 0; i < cars->size(); i++)
+	{
+		if (chos_fuel_consumption == cars->at(i).fuel_consumption)
+		{
+			std::cout << "------------------------------------------------------------------------------------------------------------------------\n||" << LINE_TITLE << cars->at(i).title << "||" << LINE_TYPE << cars->at(i).type_of_car << "||" << LINE_CAPACITY << cars->at(i).capacity << "||" << LINE_FUEL_CONSUMPTION << cars->at(i).fuel_consumption << "||" << LINE_PRICE << cars->at(i).price << "||" << LINE_AMOUNT << cars->at(i).amount << "||\n------------------------------------------------------------------------------------------------------------------------\n";
+		}
+	}
+}
+
+void searchType(std::vector<car>* cars)
+{
+	std::string chos_type;
+	std::cout << LINE_INPUT_TYPE << std::endl;
+	std::cin >> chos_type;
+
+	for (int i = 0; i < cars->size(); i++)
+	{
+		if (chos_type == cars->at(i).type_of_car)
+		{
+			std::cout << "------------------------------------------------------------------------------------------------------------------------\n||" << LINE_TITLE << cars->at(i).title << "||" << LINE_TYPE << cars->at(i).type_of_car << "||" << LINE_CAPACITY << cars->at(i).capacity << "||" << LINE_FUEL_CONSUMPTION << cars->at(i).fuel_consumption << "||" << LINE_PRICE << cars->at(i).price << "||" << LINE_AMOUNT << cars->at(i).amount << "||\n------------------------------------------------------------------------------------------------------------------------\n";
+		}
+	}
+}
+
+void searchPrice(std::vector<car>* cars)
+{
+	double chos_price;
+	std::cout << LINE_INPUT_PRICE << std::endl;
+	chos_price = inputNumber();
+
+	for (int i = 0; i < cars->size(); i++)
+	{
+		if (chos_price == cars->at(i).price)
+		{
+			std::cout << "------------------------------------------------------------------------------------------------------------------------\n||" << LINE_TITLE << cars->at(i).title << "||" << LINE_TYPE << cars->at(i).type_of_car << "||" << LINE_CAPACITY << cars->at(i).capacity << "||" << LINE_FUEL_CONSUMPTION << cars->at(i).fuel_consumption << "||" << LINE_PRICE << cars->at(i).price << "||" << LINE_AMOUNT << cars->at(i).amount << "||\n------------------------------------------------------------------------------------------------------------------------\n";
+		}
+	}
+}
+
+void sortPrice(std::vector<car>* cars)
+{
+	car temp;
+
+	for (int i = 0; i < cars->size(); i++)
+	{
+		for (int j = 0; j < cars->size() - 1; j++)
+		{
+			if (cars->at(j).price < cars->at(j + 1).price)
+			{
+				temp = cars->at(j);
+				cars->at(j) = cars->at(j + 1);
+				cars->at(j + 1) = temp;
+			}
+		}
+	}
+}
+
+void sortAmount(std::vector<car>* cars)
+{
+	car temp;
+
+	for (int i = 0; i < cars->size(); i++)
+	{
+		for (int j = 0; j < cars->size() - 1; j++)
+		{
+			if (cars->at(j).amount < cars->at(j + 1).amount)
+			{
+				temp = cars->at(j);
+				cars->at(j) = cars->at(j + 1);
+				cars->at(j + 1) = temp;
+			}
+		}
+	}
+}
+
+void sortFuelConsumption(std::vector<car>* cars)
+{
+	car temp;
+
+	for (int i = 0; i < cars->size(); i++)
+	{
+		for (int j = 0; j < cars->size() - 1; j++)
+		{
+			if (cars->at(j).fuel_consumption < cars->at(j + 1).fuel_consumption)
+			{
+				temp = cars->at(j);
+				cars->at(j) = cars->at(j + 1);
+				cars->at(j + 1) = temp;
+			}
+		}
+	}
+}
+
+void sortCapacity(std::vector<car>* cars)
+{
+	car temp;
+
+	for (int i = 0; i < cars->size(); i++)
+	{
+		for (int j = 0; j < cars->size() - 1; j++)
+		{
+			if (cars->at(j).capacity < cars->at(j + 1).capacity)
+			{
+				temp = cars->at(j);
+				cars->at(j) = cars->at(j + 1);
+				cars->at(j + 1) = temp;
+			}
+		}
+	}
+}

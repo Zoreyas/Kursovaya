@@ -18,6 +18,7 @@ int main()
 		{
 			saveAccounts(accounts);
 			saveCars(cars);
+			delete current_account;
 			return 0;
 		}
 
@@ -40,11 +41,11 @@ int main()
 			{
 				if (current_account->admin == 1)
 				{
-					screenAdmin(&accounts, &cars, &flag_menu);
+					screenAdmin(&accounts, &cars, &flag_menu, *current_account);
 				}
 				else
 				{
-
+					screenViewData(&cars);
 				}
 			}
 		}

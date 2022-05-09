@@ -26,14 +26,14 @@ user* screenLogIn(std::vector<user>* accounts, int* flag_menu)
 	}
 }
 
-void screenAdmin(std::vector<user>* accounts, std::vector<car>* cars, int* flag_menu)
+void screenAdmin(std::vector<user>* accounts, std::vector<car>* cars, int* flag_menu, user current_account)
 {
 	system("cls");
 	std::cout << LINE_ADMIN_MENU << std::endl;
 	switch (_getch())
 	{
 	case '1':
-		screenAdminAccounts(accounts);
+		screenAdminAccounts(accounts, current_account);
 		break;
 	case '2':
 		screenAdminData(cars);
@@ -44,7 +44,7 @@ void screenAdmin(std::vector<user>* accounts, std::vector<car>* cars, int* flag_
 	}
 }
 
-void screenAdminAccounts(std::vector<user>* accounts)
+void screenAdminAccounts(std::vector<user>* accounts, user current_account)
 {
 	bool flag = true;
 	while (flag) {
@@ -61,7 +61,7 @@ void screenAdminAccounts(std::vector<user>* accounts)
 			accounts->push_back(registerAccount(*accounts));
 			break;
 		case '3':
-			editAccount(accounts);
+			editAccount(accounts, current_account);
 			break;
 		case '4':
 			deleteAccount(accounts);
@@ -135,6 +135,124 @@ void screenViewData(std::vector<car>* cars)
 	while (flag)
 	{
 		system("cls");
-		std::cout<<
+		std::cout << LINE_VIEW_DATA_MENU << std::endl;
+
+		switch (_getch())
+		{
+		case '1':
+			system("cls");
+			viewData(cars);
+			_getch();
+			break;
+		case '2':
+			system("cls");
+			getPrice(cars);
+			_getch();
+			break;
+		case '3':
+			system("cls");
+			getCarViaCapacity(cars);
+			_getch();
+			break;
+		case '4':
+			system("cls");
+			searchScreen(cars);
+			break;
+		case '5':
+			system("cls");
+			sortScreen(cars);
+			break;
+		case '6':
+			flag = false;
+			break;
+		}
+	}
+}
+
+void searchScreen(std::vector<car>* cars)
+{
+	bool flag = true;
+	while (flag)
+	{
+		system("cls");
+		std::cout << LINE_SEARCH_SCREEN << std::endl;
+
+		switch (_getch())
+		{
+		case '1':
+			system("cls");
+			searchTitle(cars);
+			_getch();
+			break;
+		case '2':
+			system("cls");
+			searchCapacity(cars);
+			_getch();
+			break;
+		case '3':
+			system("cls");
+			searchAmount(cars);
+			_getch();
+			break;
+		case '4':
+			system("cls");
+			searchFuelConsumption(cars);
+			_getch();
+			break;
+		case '5':
+			system("cls");
+			searchPrice(cars);
+			_getch();
+			break;
+		case '6':
+			system("cls");
+			searchType(cars);
+			_getch();
+			break;
+		case '7':
+			flag = false;
+			break;
+		}
+	}
+}
+
+void sortScreen(std::vector<car>* cars)
+{
+	bool flag = true;
+	while (flag)
+	{
+		system("cls");
+		std::cout << LINE_SORT_SCREEN << std::endl;
+
+		switch (_getch())
+		{
+		case '1':
+			system("cls");
+			sortCapacity(cars);
+			viewData(cars);
+			_getch();
+			break;
+		case '2':
+			system("cls");
+			sortPrice(cars);
+			viewData(cars);
+			_getch();
+			break;
+		case '3':
+			system("cls");
+			sortFuelConsumption(cars);
+			viewData(cars);
+			_getch();
+			break;
+		case '4':
+			system("cls");
+			sortAmount(cars);
+			viewData(cars);
+			_getch();
+			break;
+		case '5':
+			flag = false;
+			break;
+		}
 	}
 }

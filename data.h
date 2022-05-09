@@ -46,3 +46,27 @@ void changeFuelConsumption(std::vector<car>*, std::string); // Change fuel consu
 void changePrice(std::vector<car>*, std::string); // Change price
 
 void changeAmount(std::vector<car>*, std::string); // Change amount
+
+void getPrice(std::vector<car>*); // Get total price of cars
+
+void getCarViaCapacity(std::vector<car>*); // Find cars with selected capacity
+
+void searchTitle(std::vector<car>*); // Find cars via title
+
+void searchCapacity(std::vector<car>*); // Find cars via capacity
+
+void searchFuelConsumption(std::vector<car>*); // Find cars via fuel consumption
+
+void searchType(std::vector<car>*); // Find cars via type
+
+void searchPrice(std::vector<car>*); // Find cars via price
+
+void searchAmount(std::vector<car>*); // Find cars via amount
+
+void sortAmount(std::vector<car>*); // Sort cars by amount
+
+void sortFuelConsumption(std::vector<car>*); // Sort cars by fuel consumption
+
+void sortPrice(std::vector<car>*); // Sort cars by price
+
+void sortCapacity(std::vector<car>*); // Sort cars by capacity

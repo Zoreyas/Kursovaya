@@ -28,3 +28,20 @@ char inputMenu(char top_edge, char bottom_edge)
 		}
 	}
 }
+
+void inputBorders(double* left_border, double* right_border)
+{
+	std::cout << LINE_INPUT_LEFT_BORDER << std::endl;
+	*left_border = inputNumber();
+	std::cout << LINE_INPUT_RIGHT_BORDER << std::endl;
+	*right_border = inputNumber();
+
+	if (*left_border > *right_border)
+	{
+		double temp;
+		temp = *left_border;
+		*left_border = *right_border;
+		*right_border = temp;
+		std::cout << LINE_BORDERS_SWAPPED << std::endl;
+	}
+}

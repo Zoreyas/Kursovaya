@@ -41,7 +41,7 @@ std::string getSymbolsForSalt(); // Generate symbols for salt
 
 void showAccounts(std::vector<user>*); // Show all accounts
 
-void editAccount(std::vector<user>*); // Choose account to edit
+void editAccount(std::vector<user>*, user); // Choose account to edit
 
 void editOneAccount(user*, std::vector<user>*); // Edit account
 
